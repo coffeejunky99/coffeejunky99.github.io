@@ -28,8 +28,9 @@
   --f-jp:    'Noto Sans JP', sans-serif;
 
   /* Layout */
-  --max-w:   1160px;
-  --nav-h:   68px;
+  --max-w:         1160px;
+  --nav-h:         68px;
+  --nav-logo-size: 40px;
 
   /* Motion */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -123,15 +124,29 @@ img { max-width: 100%; display: block; }
 }
 
 .nav__logo {
-  font-family: var(--f-serif);
-  font-size: 1.45rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  transition: color var(--dur) var(--ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--nav-logo-size);
+  height: var(--nav-logo-size);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--border-mid);
+  transition: opacity var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.nav__logo:hover { color: var(--accent-lite); }
+.nav__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.nav__logo:hover {
+  opacity: 0.85;
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
 
 .nav__links {
   display: flex;
