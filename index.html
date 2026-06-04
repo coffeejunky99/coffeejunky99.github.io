@@ -1,11 +1,201 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>My First GitHub Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Akira Hata — Developer & Coffee Explorer from Hokkaido">
+  <title>Akira Hata</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>My website is now live on GitHub Pages!</p>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav" id="nav">
+    <a href="#home" class="nav__logo">AH</a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav__toggle" id="navToggle" aria-label="メニューを開閉">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Portfolio</p>
+        <h1 class="hero__name">
+          <span class="hero__name-first">Akira</span>
+          <span class="hero__name-jp">畑 明良</span>
+          <span class="hero__name-last">Hata</span>
+        </h1>
+        <p class="hero__tagline">Developer &nbsp;·&nbsp; Coffee Explorer &nbsp;·&nbsp; Hokkaido</p>
+        <a href="#works" class="hero__cta">Works を見る</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__inner reveal">
+        <div class="about__photo-wrap">
+          <div class="about__photo-placeholder">
+            <!-- ここに写真を入れる場合: <img src="photo.jpg" alt="Akira Hata"> -->
+            <span class="about__photo-label">Photo</span>
+          </div>
+        </div>
+        <div class="about__body">
+          <p class="section__label">About me</p>
+          <h2 class="section__title">自己紹介</h2>
+          <p class="about__text">
+            北海道出身、薬学部卒業後にキャリアチェンジを決意。
+            フィリピン・セブ島のITプログラムでウェブ開発を学んでいます。
+            薬剤師からエンジニアへ、異色の経歴を武器に挑戦中。
+          </p>
+          <p class="about__text">
+            スペシャルティコーヒー、ジムトレーニング、旅行が好き。
+            日々の学び・発見・制作物をここで発信していきます。
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">PHP / Laravel</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Phaser.js</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">HTML / CSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Works ===== -->
+  <section class="works section" id="works">
+    <div class="container">
+      <p class="section__label">Works</p>
+      <h2 class="section__title">制作物</h2>
+
+      <div class="works__grid">
+
+        <article class="work-card reveal">
+          <div class="work-card__thumb work-card__thumb--1">
+            <span class="work-card__num">01</span>
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">Cebu Conquest</h3>
+            <p class="work-card__desc">
+              セブ島を舞台にしたリアルタイム多人数領土争奪ゲーム。
+              4人チームで開発中、Phaser.js フロントを担当。
+            </p>
+            <div class="work-card__stack">
+              <span>Phaser.js</span>
+              <span>React</span>
+              <span>Socket.IO</span>
+            </div>
+            <a href="#" class="work-card__link">View project →</a>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="work-card__thumb work-card__thumb--2">
+            <span class="work-card__num">02</span>
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">Cebu Coffee</h3>
+            <p class="work-card__desc">
+              セブ島のカフェを探索・レビューできるウェブサイト。
+              PHP + MySQL でフルスクラッチ構築。
+            </p>
+            <div class="work-card__stack">
+              <span>PHP</span>
+              <span>MySQL</span>
+            </div>
+            <a href="#" class="work-card__link">View project →</a>
+          </div>
+        </article>
+
+        <article class="work-card work-card--soon reveal">
+          <div class="work-card__thumb work-card__thumb--3">
+            <span class="work-card__num">03</span>
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">Next Project</h3>
+            <p class="work-card__desc">準備中 — Coming soon...</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Hobbies ===== -->
+  <section class="hobbies section" id="hobbies">
+    <div class="container">
+      <p class="section__label">Interests</p>
+      <h2 class="section__title">趣味 / 好きなこと</h2>
+
+      <div class="hobbies__grid">
+        <div class="hobby-card reveal">
+          <div class="hobby-card__icon">☕</div>
+          <h3 class="hobby-card__title">Specialty Coffee</h3>
+          <p class="hobby-card__text">セブ島のカフェを巡り、スペシャルティコーヒーを探索中。淹れ方の科学も勉強しています。</p>
+        </div>
+        <div class="hobby-card reveal">
+          <div class="hobby-card__icon">🏋️</div>
+          <h3 class="hobby-card__title">Gym Training</h3>
+          <p class="hobby-card__text">マシントレーニングを週5回。各部位を週2回ターゲットにして鍛えています。</p>
+        </div>
+        <div class="hobby-card reveal">
+          <div class="hobby-card__icon">✈️</div>
+          <h3 class="hobby-card__title">Travel</h3>
+          <p class="hobby-card__text">フィリピンを中心に、旅先での発見や食を記録していきます。</p>
+        </div>
+        <div class="hobby-card reveal">
+          <div class="hobby-card__icon">⚾</div>
+          <h3 class="hobby-card__title">Fighters</h3>
+          <p class="hobby-card__text">北海道日本ハムファイターズを応援しています。エスコンフィールドに帰りたい。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer / Contact ===== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__name">Akira Hata</p>
+        <p class="footer__sub">Builder of things, drinker of coffee.</p>
+        <nav class="footer__links" aria-label="SNSリンク">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://note.com/" target="_blank" rel="noopener noreferrer">note</a>
+        </nav>
+        <p class="footer__copy">© 2026 Akira Hata — Built with ❤️ in Cebu</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
