@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -40,7 +41,9 @@
     </div>
 
     <div class="container">
-      <div class="hero__content">
+      <div class="hero__content"
+           data-aos="fade-up"
+           data-aos-once="true">
         <p class="hero__eyebrow">Portfolio</p>
         <h1 class="hero__name">
           <span class="hero__name-first">Akira</span>
@@ -61,7 +64,11 @@
   <!-- ===== About ===== -->
   <section class="about section" id="about">
     <div class="container">
-      <div class="about__inner reveal">
+      <div class="about__inner section-aos"
+           data-aos="section-rise"
+           data-aos-anchor="#home"
+           data-aos-anchor-placement="bottom-bottom"
+           data-aos-mirror="true">
         <div class="about__photo-wrap">
           <div class="about__photo-placeholder">
             <!-- ここに写真を入れる場合: <img src="photo.jpg" alt="Akira Hata"> -->
@@ -95,59 +102,90 @@
 
   <!-- ===== Works ===== -->
   <section class="works section" id="works">
-    <div class="container">
-      <p class="section__label">Works</p>
-      <h2 class="section__title">制作物</h2>
+    <div class="works__inner section-aos"
+         data-aos="section-rise"
+         data-aos-anchor="#about"
+         data-aos-anchor-placement="bottom-bottom"
+         data-aos-mirror="true">
+      <div class="container">
+        <p class="section__label">Works</p>
+        <h2 class="section__title section__title--works">制作物</h2>
+      </div>
 
-      <div class="works__grid">
+      <div class="works__stage">
+        <div class="works__carousel-wrap">
+          <button type="button" class="works__nav works__nav--prev" aria-label="前の制作物">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-        <article class="work-card reveal">
-          <div class="work-card__thumb work-card__thumb--1">
-            <span class="work-card__num">01</span>
-          </div>
-          <div class="work-card__body">
-            <h3 class="work-card__title">Cebu Conquest</h3>
-            <p class="work-card__desc">
-              セブ島を舞台にしたリアルタイム領土争奪ゲーム。
-              4人チームでMVPをチーム開発、Phaser.js フロントを担当。現在は1人でアップデートを継続。
-            </p>
-            <div class="work-card__stack">
-              <span>Phaser.js</span>
-              <span>React</span>
-              <span>Socket.IO</span>
+          <div class="works__carousel" tabindex="0" aria-label="制作物スライダー">
+
+          <article class="work-card">
+            <div class="work-card__thumb work-card__thumb--1">
+              <span class="work-card__num">01</span>
             </div>
-            <a href="#" class="work-card__link">View project →</a>
-          </div>
-        </article>
-
-        <article class="work-card reveal">
-          <div class="work-card__thumb work-card__thumb--2">
-            <span class="work-card__num">02</span>
-          </div>
-          <div class="work-card__body">
-            <h3 class="work-card__title">Cebu Coffee</h3>
-            <p class="work-card__desc">
-              セブ島のカフェを探索・レビューできるウェブサイト。
-              PHP + MySQL でフルスクラッチ構築。
-            </p>
-            <div class="work-card__stack">
-              <span>PHP</span>
-              <span>MySQL</span>
+            <div class="work-card__body">
+              <h3 class="work-card__title">Cebu Conquest</h3>
+              <p class="work-card__desc">
+                セブ島を舞台にしたリアルタイム領土争奪ゲーム。
+                4人チームでMVPをチーム開発、Phaser.js フロントを担当。現在は1人でアップデートを継続。
+              </p>
+              <div class="work-card__stack">
+                <span>Phaser.js</span>
+                <span>React</span>
+                <span>Socket.IO</span>
+              </div>
+              <a href="#" class="work-card__link">View project →</a>
             </div>
-            <a href="#" class="work-card__link">View project →</a>
-          </div>
-        </article>
+          </article>
 
-        <article class="work-card work-card--soon reveal">
-          <div class="work-card__thumb work-card__thumb--3">
-            <span class="work-card__num">03</span>
-          </div>
-          <div class="work-card__body">
-            <h3 class="work-card__title">Next Project</h3>
-            <p class="work-card__desc">準備中 — Coming soon...</p>
-          </div>
-        </article>
+          <article class="work-card">
+            <div class="work-card__thumb work-card__thumb--2">
+              <span class="work-card__num">02</span>
+            </div>
+            <div class="work-card__body">
+              <h3 class="work-card__title">Cebu Coffee</h3>
+              <p class="work-card__desc">
+                セブ島のカフェを探索・レビューできるウェブサイト。
+                PHP + MySQL でフルスクラッチ構築。
+              </p>
+              <div class="work-card__stack">
+                <span>PHP</span>
+                <span>MySQL</span>
+              </div>
+              <a href="#" class="work-card__link">View project →</a>
+            </div>
+          </article>
 
+          <article class="work-card work-card--soon">
+            <div class="work-card__thumb work-card__thumb--3">
+              <span class="work-card__num">03</span>
+            </div>
+            <div class="work-card__body">
+              <h3 class="work-card__title">Next Project</h3>
+              <p class="work-card__desc">準備中 — Coming soon...</p>
+            </div>
+          </article>
+
+          </div>
+
+          <button type="button" class="works__nav works__nav--next" aria-label="次の制作物">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M8 4L14 10L8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="works__controls">
+          <div class="works__dots" role="tablist" aria-label="制作物の選択"></div>
+          <p class="works__counter" aria-live="polite">
+            <span class="works__counter-current">01</span>
+            <span class="works__counter-sep">/</span>
+            <span class="works__counter-total">03</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -155,30 +193,36 @@
   <!-- ===== Hobbies ===== -->
   <section class="hobbies section" id="hobbies">
     <div class="container">
+      <div class="hobbies__inner section-aos"
+           data-aos="section-rise"
+           data-aos-anchor="#works"
+           data-aos-anchor-placement="bottom-bottom"
+           data-aos-mirror="true">
       <p class="section__label">Interests</p>
       <h2 class="section__title">趣味 / 好きなこと</h2>
 
       <div class="hobbies__grid">
-        <div class="hobby-card reveal">
+        <div class="hobby-card">
           <div class="hobby-card__icon">☕</div>
           <h3 class="hobby-card__title">Coffee</h3>
           <p class="hobby-card__text">コーヒーは嫌い。ただ美味しい液体を求めているだけ。</p>
         </div>
-        <div class="hobby-card reveal">
+        <div class="hobby-card">
           <div class="hobby-card__icon">🏋️</div>
           <h3 class="hobby-card__title">Exercise</h3>
           <p class="hobby-card__text">毎朝のウォーキング、ジムでの筋トレ、ハイキング。アウトドアなアクティビティ全般好き。</p>
         </div>
-        <div class="hobby-card reveal">
+        <div class="hobby-card">
           <div class="hobby-card__icon">🍖</div>
           <h3 class="hobby-card__title">Food</h3>
           <p class="hobby-card__text">料理と外食。食への関心が高め。旅先でも未知の食べ物にチャレンジ。</p>
         </div>
-        <div class="hobby-card reveal">
+        <div class="hobby-card">
           <div class="hobby-card__icon">⚾</div>
           <h3 class="hobby-card__title">Fighters</h3>
           <p class="hobby-card__text">北海道日本ハムファイターズを応援しています。F VillageとEs Con Fieldは家も同然。</p>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -186,7 +230,11 @@
   <!-- ===== Footer / Contact ===== -->
   <footer class="footer" id="contact">
     <div class="container">
-      <div class="footer__inner">
+      <div class="footer__inner section-aos"
+           data-aos="section-rise"
+           data-aos-anchor="#hobbies"
+           data-aos-anchor-placement="bottom-bottom"
+           data-aos-mirror="true">
         <p class="footer__name">Akira Hata</p>
         <p class="footer__sub">Builder of things, drinker of coffee.</p>
         <nav class="footer__links" aria-label="SNSリンク">
@@ -198,6 +246,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
