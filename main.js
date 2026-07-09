@@ -51,7 +51,7 @@ const sectionObserver = new IntersectionObserver(
       const id = entry.target.getAttribute('id');
       navAnchors.forEach(a => {
         a.style.color = a.getAttribute('href') === `#${id}`
-          ? 'var(--text)'
+          ? 'var(--accent-2)'
           : '';
       });
     });
