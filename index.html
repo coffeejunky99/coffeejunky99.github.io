@@ -1,128 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Akira Hataのポートフォリオ。Web開発、AI、デジタルマーケティング、コーヒーに関する制作と活動を紹介します。">
-  <meta name="theme-color" content="#0d0d0d">
-  <meta property="og:title" content="Akira Hata | CoffeeJunky99">
-  <meta property="og:description" content="Web development, AI, digital marketing, and coffee.">
-  <meta property="og:type" content="website">
-  <title>Akira Hata | CoffeeJunky99</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav" id="nav" aria-label="メインナビゲーション">
-      <div class="nav__inner">
-        <a href="#home" class="nav__logo" aria-label="ホームへ戻る">
-          <img src="assets/icons/git_icon.PNG" alt="Akira Hata" width="48" height="48">
-        </a>
-        <button class="nav__toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-controls="navLinks" aria-expanded="false">
-          <span></span><span></span>
-        </button>
-        <ul class="nav__links" id="navLinks">
-          <li><a href="#about">About</a></li>
-          <li><a href="#works">Works</a></li>
-          <li><a href="#interests">Interests</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero__glow hero__glow--orange" aria-hidden="true"></div>
-      <div class="hero__glow hero__glow--green" aria-hidden="true"></div>
-      <div class="container hero__content reveal">
-        <p class="eyebrow"><span></span> PORTFOLIO / 2026</p>
-        <h1 id="hero-title">AKIRA <strong>HATA</strong></h1>
-        <p class="hero__brand">COFFEEJUNKY<span>99</span></p>
-        <p class="hero__lead">Developer, marketer and coffee explorer.<br>Building digital experiences with technology, curiosity and taste.</p>
-        <p class="hero__jp">技術と好奇心、そして一杯のコーヒーから、心に残る体験をつくります。</p>
-        <div class="hero__actions">
-          <a class="button button--primary" href="#works">View Projects <span aria-hidden="true">↗</span></a>
-          <a class="button button--secondary" href="#about">About Me</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Akira Hataのポートフォリオ。Web開発、AI、デジタルマーケティング、コーヒーに関する制作と活動を紹介します。"
+    />
+    <meta name="theme-color" content="#0d0d0d" />
+    <meta property="og:title" content="Akira Hata | CoffeeJunky99" />
+    <meta property="og:description" content="Web development, AI, digital marketing, and coffee." />
+    <meta property="og:type" content="website" />
+    <title>Akira Hata | CoffeeJunky99</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=20260712-1" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" id="nav" aria-label="メインナビゲーション">
+        <div class="nav__inner">
+          <a href="#home" class="nav__logo" aria-label="ホームへ戻る">
+            <img src="assets/icons/git_icon.PNG" alt="Akira Hata" width="48" height="48" />
+          </a>
+          <button
+            class="nav__toggle"
+            id="navToggle"
+            type="button"
+            aria-label="メニューを開く"
+            aria-controls="navLinks"
+            aria-expanded="false"
+          >
+            <span></span><span></span>
+          </button>
+          <ul class="nav__links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-      </div>
-      <a class="hero__scroll" href="#about"><span>SCROLL TO EXPLORE</span><i aria-hidden="true"></i></a>
-    </section>
+      </nav>
+    </header>
 
-    <section class="section about" id="about" aria-labelledby="about-title">
-      <div class="container about__grid reveal">
-        <div class="portrait" aria-label="Akira Hataのポートレート。現在準備中です。">
-          <!-- 写真を追加する場合は、この要素内に img を配置してください。 -->
-          <div class="portrait__orb" aria-hidden="true"></div>
-          <p>PORTRAIT</p><strong>COMING<br>SOON</strong>
-          <span>AKIRA HATA / 01</span>
-        </div>
-        <div class="about__content">
-          <p class="eyebrow"><span></span> ABOUT ME</p>
-          <h2 id="about-title">A different path,<br><em>one clear direction.</em></h2>
-          <p>北海道出身。薬学部卒業後にキャリアチェンジを決意し、フィリピン・セブ島でWeb開発を学びました。異なる領域で培った視点を生かし、使う人の体験に向き合うものづくりを続けています。</p>
-          <p>スペシャルティコーヒー、筋トレ、旅行が好き。技術や制作物、日々の発見を発信しています。</p>
-          <div class="skill-tags" aria-label="スキル">
-            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>PHP</span><span>MySQL</span><span>Node.js</span><span>Phaser</span><span>Git</span><span>AI Tools</span><span>Digital Marketing</span>
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero__glow hero__glow--orange" aria-hidden="true"></div>
+        <div class="hero__glow hero__glow--green" aria-hidden="true"></div>
+        <div class="container hero__content reveal">
+          <p class="eyebrow"><span></span> PORTFOLIO / 2026</p>
+          <h1 id="hero-title">AKIRA <strong>HATA</strong></h1>
+          <p class="hero__brand">COFFEEJUNKY<span>99</span></p>
+          <p class="hero__lead">
+            Developer, marketer and coffee explorer.<br />Building digital experiences with
+            technology, curiosity and taste.
+          </p>
+          <p class="hero__jp">技術と好奇心、そして一杯のコーヒーから、心に残る体験をつくります。</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#works"
+              >View Projects <span aria-hidden="true">↗</span></a
+            >
+            <a class="button button--secondary" href="#about">About Me</a>
           </div>
         </div>
-      </div>
-    </section>
+        <a class="hero__scroll" href="#about"
+          ><span>SCROLL TO EXPLORE</span><i aria-hidden="true"></i
+        ></a>
+      </section>
 
-    <section class="section works" id="works" aria-labelledby="works-title">
-      <div class="container reveal">
-        <div class="section-heading">
-          <div><p class="eyebrow"><span></span> SELECTED WORKS</p><h2 id="works-title">Things I’ve built.</h2></div>
-          <p>学びとチームワークから生まれた、<br>現在進行形のプロジェクト。</p>
+      <section class="section about" id="about" aria-labelledby="about-title">
+        <div class="container about__grid reveal">
+          <div class="portrait" aria-label="Akira Hataのポートレート。現在準備中です。">
+            <!-- 写真を追加する場合は、この要素内に img を配置してください。 -->
+            <div class="portrait__orb" aria-hidden="true"></div>
+            <p>PORTRAIT</p>
+            <strong>COMING<br />SOON</strong>
+            <span>AKIRA HATA / 01</span>
+          </div>
+          <div class="about__content">
+            <p class="eyebrow"><span></span> ABOUT ME</p>
+            <h2 id="about-title">A different path,<br /><em>one clear direction.</em></h2>
+            <p>
+              北海道出身。薬学部卒業後にキャリアチェンジを決意し、フィリピン・セブ島でWeb開発を学びました。異なる領域で培った視点を生かし、使う人の体験に向き合うものづくりを続けています。
+            </p>
+            <p>
+              スペシャルティコーヒー、筋トレ、旅行が好き。技術や制作物、日々の発見を発信しています。
+            </p>
+            <div class="skill-tags" aria-label="スキル">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span
+              ><span>React</span><span>PHP</span><span>MySQL</span><span>Node.js</span
+              ><span>Phaser</span><span>Git</span><span>AI Tools</span
+              ><span>Digital Marketing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section works" id="works" aria-labelledby="works-title">
+        <div class="container reveal">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow"><span></span> SELECTED WORKS</p>
+              <h2 id="works-title">Things I’ve built.</h2>
+            </div>
+            <p>学びとチームワークから生まれた、<br />現在進行形のプロジェクト。</p>
+          </div>
+        </div>
+        <div class="works__stage reveal">
+          <button
+            class="carousel-button carousel-button--prev"
+            type="button"
+            aria-label="前のプロジェクト"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <div
+            class="works__carousel"
+            tabindex="0"
+            aria-label="制作物カルーセル。左右矢印キーでも操作できます。"
+          ></div>
+          <button
+            class="carousel-button carousel-button--next"
+            type="button"
+            aria-label="次のプロジェクト"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+          </button>
+        </div>
+        <div class="container works__footer reveal">
+          <div class="works__dots" role="tablist" aria-label="プロジェクトを選択"></div>
+          <p class="works__counter" aria-live="polite"><b>01</b><span>/ 03</span></p>
+        </div>
+      </section>
+
+      <section class="section interests" id="interests" aria-labelledby="interests-title">
+        <div class="container reveal">
+          <p class="eyebrow"><span></span> BEYOND THE SCREEN</p>
+          <h2 id="interests-title">Interests that<br />keep me curious.</h2>
+          <div class="interests__grid">
+            <article class="interest-card">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8h13a3 3 0 0 1 0 6h-1" />
+                <path d="M4 8v8a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4V8M8 4v2m4-2v2" />
+              </svg>
+              <h3>Coffee</h3>
+              <p>嫌い。ただ、美味しい液体を求めているだけです。</p>
+            </article>
+            <article class="interest-card">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 7 3 3m6-3-3 3M5 19l5-5m4 0 5 5M3 12h18" />
+                <path d="M7 6h10v4H7z" />
+              </svg>
+              <h3>Fitness</h3>
+              <p>ウォーキングと筋トレ。身体を動かすことが思考を整えます。</p>
+            </article>
+            <article class="interest-card">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 3h18v4H3zM5 7v8a7 7 0 0 0 14 0V7M12 15v6" />
+              </svg>
+              <h3>Food</h3>
+              <p>料理も外食も。旅先では未知の味に出会いに行きます。</p>
+            </article>
+            <article class="interest-card">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 3h12v7a6 6 0 0 1-12 0V3Z" />
+                <path d="M6 5H4a2 2 0 0 0 0 4h2m12-4h2a2 2 0 0 1 0 4h-2M9 21h6m-3-5v5" />
+              </svg>
+              <h3>Fighters</h3>
+              <p>北海道日本ハムファイターズを応援。F Villageは家も同然です。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contact">
+      <div class="container footer__inner reveal">
+        <p class="eyebrow"><span></span> GET IN TOUCH</p>
+        <h2>Let’s build something<br /><em>meaningful.</em></h2>
+        <p class="footer__lead">Technology, marketing, coffee and the next idea.</p>
+        <div class="footer__links">
+          <a href="https://github.com/coffeejunky99" target="_blank" rel="noopener noreferrer"
+            >GitHub <span>↗</span></a
+          ><a href="https://note.com/coffeejunky" target="_blank" rel="noopener noreferrer"
+            >note <span>↗</span></a
+          ><a href="mailto:hello@coffeejunky.dev">Contact <span>↗</span></a>
+        </div>
+        <div class="footer__bottom">
+          <p>© 2026 Akira Hata. Built with curiosity and coffee.</p>
+          <a href="#home">BACK TO TOP ↑</a>
         </div>
       </div>
-      <div class="works__stage reveal">
-        <button class="carousel-button carousel-button--prev" type="button" aria-label="前のプロジェクト">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <div class="works__carousel" tabindex="0" aria-label="制作物カルーセル。左右矢印キーでも操作できます。"></div>
-        <button class="carousel-button carousel-button--next" type="button" aria-label="次のプロジェクト">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
-      </div>
-      <div class="container works__footer reveal">
-        <div class="works__dots" role="tablist" aria-label="プロジェクトを選択"></div>
-        <p class="works__counter" aria-live="polite"><b>01</b><span>/ 03</span></p>
-      </div>
-    </section>
-
-    <section class="section interests" id="interests" aria-labelledby="interests-title">
-      <div class="container reveal">
-        <p class="eyebrow"><span></span> BEYOND THE SCREEN</p>
-        <h2 id="interests-title">Interests that<br>keep me curious.</h2>
-        <div class="interests__grid">
-          <article class="interest-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13a3 3 0 0 1 0 6h-1"/><path d="M4 8v8a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4V8M8 4v2m4-2v2"/></svg><h3>Coffee</h3><p>嫌い。ただ、美味しい液体を求めているだけです。</p></article>
-          <article class="interest-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 7 3 3m6-3-3 3M5 19l5-5m4 0 5 5M3 12h18"/><path d="M7 6h10v4H7z"/></svg><h3>Fitness</h3><p>ウォーキングと筋トレ。身体を動かすことが思考を整えます。</p></article>
-          <article class="interest-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v4H3zM5 7v8a7 7 0 0 0 14 0V7M12 15v6"/></svg><h3>Food</h3><p>料理も外食も。旅先では未知の味に出会いに行きます。</p></article>
-          <article class="interest-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v7a6 6 0 0 1-12 0V3Z"/><path d="M6 5H4a2 2 0 0 0 0 4h2m12-4h2a2 2 0 0 1 0 4h-2M9 21h6m-3-5v5"/></svg><h3>Fighters</h3><p>北海道日本ハムファイターズを応援。F Villageは家も同然です。</p></article>
+    </footer>
+    <template id="workCardTemplate">
+      <article class="work-card" role="group">
+        <div class="work-card__visual">
+          <span class="work-card__number"></span
+          ><span class="work-card__mark" aria-hidden="true"></span>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer" id="contact">
-    <div class="container footer__inner reveal">
-      <p class="eyebrow"><span></span> GET IN TOUCH</p>
-      <h2>Let’s build something<br><em>meaningful.</em></h2>
-      <p class="footer__lead">Technology, marketing, coffee and the next idea.</p>
-      <div class="footer__links"><a href="https://github.com/coffeejunky99" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a href="https://note.com/coffeejunky" target="_blank" rel="noopener noreferrer">note <span>↗</span></a><a href="mailto:hello@coffeejunky.dev">Contact <span>↗</span></a></div>
-      <div class="footer__bottom"><p>© 2026 Akira Hata. Built with curiosity and coffee.</p><a href="#home">BACK TO TOP ↑</a></div>
-    </div>
-  </footer>
-  <template id="workCardTemplate">
-    <article class="work-card" role="group">
-      <div class="work-card__visual"><span class="work-card__number"></span><span class="work-card__mark" aria-hidden="true"></span></div>
-      <div class="work-card__body"><p class="work-card__type"></p><h3></h3><p class="work-card__description"></p><div class="work-card__stack"></div><span class="work-card__status"></span></div>
-    </article>
-  </template>
-  <script src="main.js"></script>
-</body>
+        <div class="work-card__body">
+          <p class="work-card__type"></p>
+          <h3></h3>
+          <p class="work-card__description"></p>
+          <div class="work-card__stack"></div>
+          <span class="work-card__status"></span>
+        </div>
+      </article>
+    </template>
+    <script src="main.js?v=20260712-1"></script>
+  </body>
 </html>
