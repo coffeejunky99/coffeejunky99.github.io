@@ -1,235 +1,98 @@
-/* ============================================================
-   main.js — Akira Hata Portfolio
-   ============================================================ */
+(() => {
+  'use strict';
 
-/* --- Nav: scroll border effect ---------------------------- */
-const nav = document.getElementById('nav');
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+  function setupNavigation() {
+    const nav = $('#nav');
+    const toggle = $('#navToggle');
+    const links = $('#navLinks');
+    if (!nav || !toggle || !links) return;
 
-/* --- AOS (Animate On Scroll) ------------------------------ */
-AOS.init({
-  duration: 1200,
-  easing: 'ease-out-quart',
-  once: false,
-  mirror: true,
-  offset: 60,
-  anchorPlacement: 'bottom-bottom',
-});
+    const closeMenu = () => {
+      links.classList.remove('is-open');
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'メニューを開く');
+      document.body.classList.remove('menu-open');
+    };
+    toggle.addEventListener('click', () => {
+      const open = !links.classList.contains('is-open');
+      links.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      document.body.classList.toggle('menu-open', open);
+    });
+    $$('a', links).forEach((link) => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+    window.addEventListener('scroll', () => nav.classList.toggle('is-scrolled', window.scrollY > 24), { passive: true });
 
-window.addEventListener('resize', () => AOS.refresh(), { passive: true });
-
-/* --- Nav: mobile toggle ----------------------------------- */
-const toggle   = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
-
-toggle.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  toggle.classList.toggle('open', isOpen);
-  toggle.setAttribute('aria-expanded', isOpen);
-});
-
-// メニュー項目クリックで閉じる
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    toggle.classList.remove('open');
-    toggle.setAttribute('aria-expanded', false);
-  });
-});
-
-/* --- Active nav link highlight on scroll ----------------- */
-const sections = document.querySelectorAll('section[id], footer[id]');
-const navAnchors = document.querySelectorAll('.nav__links a');
-
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute('id');
-      navAnchors.forEach(a => {
-        a.style.color = a.getAttribute('href') === `#${id}`
-          ? 'var(--accent-2)'
-          : '';
+    const navLinks = $$('a', links);
+    const sections = $$('main section[id], footer[id]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => link.classList.toggle('is-active', link.hash === `#${entry.target.id}`));
       });
+    }, { rootMargin: '-42% 0px -50% 0px' });
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  function setupReveals() {
+    const items = $$('.reveal');
+    if (!('IntersectionObserver' in window)) return items.forEach((item) => item.classList.add('is-visible'));
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    }), { threshold: 0.12 });
+    items.forEach((item) => observer.observe(item));
+  }
+
+  function setupCarousel() {
+    const carousel = $('.works__carousel');
+    const dots = $('.works__dots');
+    const counter = $('.works__counter b');
+    const template = $('#workCardTemplate');
+    if (!carousel || !dots || !counter || !template) return;
+    const projects = [
+      { type: 'REAL-TIME GAME / 2026', title: 'Cebu Conquest', description: 'セブ島を舞台にしたリアルタイム領土争奪ゲーム。4人チームで開発し、フロントエンド、ゲーム画面、UI実装を担当。', stack: ['Phaser', 'React', 'TypeScript', 'Socket.IO', 'Node.js'], visual: 'conquest', status: 'TEAM PROJECT' },
+      { type: 'WEB APPLICATION / 2025', title: 'Cebu Coffee', description: 'セブ島のカフェを探索・レビューするWebアプリケーション。PHPとMySQLを使用して設計・開発。', stack: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'], visual: 'coffee', status: 'WEB APPLICATION' },
+      { type: 'IN PROGRESS', title: 'Next Project', description: '次のアイデアを、丁寧に育てています。詳細はもう少しだけお待ちください。', stack: ['Coming soon'], visual: 'next', status: 'COMING SOON' }
+    ];
+    let active = 0;
+    const cards = projects.map((project, index) => {
+      const fragment = template.content.cloneNode(true);
+      const card = $('.work-card', fragment);
+      card.dataset.index = String(index);
+      card.classList.add(`work-card--${project.visual}`);
+      card.setAttribute('aria-label', `${project.title}、${index + 1}件目`);
+      $('.work-card__number', card).textContent = String(index + 1).padStart(2, '0');
+      $('.work-card__type', card).textContent = project.type;
+      $('h3', card).textContent = project.title;
+      $('.work-card__description', card).textContent = project.description;
+      $('.work-card__status', card).textContent = project.status;
+      project.stack.forEach((tech) => { const tag = document.createElement('span'); tag.textContent = tech; $('.work-card__stack', card).append(tag); });
+      carousel.append(card);
+      const dot = document.createElement('button');
+      dot.type = 'button'; dot.setAttribute('role', 'tab'); dot.setAttribute('aria-label', `${project.title}を表示`);
+      dot.addEventListener('click', () => goTo(index)); dots.append(dot);
+      return card;
     });
-  },
-  { rootMargin: '-40% 0px -55% 0px' }
-);
-
-sections.forEach(s => sectionObserver.observe(s));
-
-/* --- Works carousel --------------------------------------- */
-const carousel = document.querySelector('.works__carousel');
-const prevBtn  = document.querySelector('.works__nav--prev');
-const nextBtn  = document.querySelector('.works__nav--next');
-const dotsWrap = document.querySelector('.works__dots');
-const counterCurrent = document.querySelector('.works__counter-current');
-const counterTotal = document.querySelector('.works__counter-total');
-
-if (carousel && prevBtn && nextBtn && dotsWrap) {
-  const originals = [...carousel.querySelectorAll('.work-card')];
-  const count = originals.length;
-
-  if (counterTotal) counterTotal.textContent = String(count).padStart(2, '0');
-
-  const cloneFirst = originals[0].cloneNode(true);
-  const cloneLast  = originals[count - 1].cloneNode(true);
-
-  [cloneFirst, cloneLast].forEach(clone => {
-    clone.classList.add('work-card--clone');
-    clone.classList.remove('reveal', 'is-visible');
-    clone.setAttribute('aria-hidden', 'true');
-    clone.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
-  });
-
-  carousel.insertBefore(cloneLast, originals[0]);
-  carousel.appendChild(cloneFirst);
-
-  const cards = [...carousel.querySelectorAll('.work-card')];
-  const REAL_START = 1;
-  const REAL_END = count;
-  let isJumping = false;
-  let scrollTimer;
-
-  function getScrollLeftForIndex(index) {
-    const card = cards[index];
-    if (!card) return 0;
-    return card.offsetLeft + card.offsetWidth / 2 - carousel.clientWidth / 2;
+    const update = () => {
+      cards.forEach((card, index) => card.classList.toggle('is-active', index === active));
+      $$('button', dots).forEach((dot, index) => { dot.classList.toggle('is-active', index === active); dot.setAttribute('aria-selected', String(index === active)); });
+      counter.textContent = String(active + 1).padStart(2, '0');
+    };
+    const goTo = (index) => { active = (index + projects.length) % projects.length; cards[active].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); update(); };
+    $('.carousel-button--prev')?.addEventListener('click', () => goTo(active - 1));
+    $('.carousel-button--next')?.addEventListener('click', () => goTo(active + 1));
+    carousel.addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(active - 1); } if (event.key === 'ArrowRight') { event.preventDefault(); goTo(active + 1); } });
+    let scrollTimer;
+    carousel.addEventListener('scroll', () => { clearTimeout(scrollTimer); scrollTimer = window.setTimeout(() => { const center = carousel.scrollLeft + carousel.clientWidth / 2; active = cards.reduce((closest, card, index) => Math.abs(card.offsetLeft + card.offsetWidth / 2 - center) < Math.abs(cards[closest].offsetLeft + cards[closest].offsetWidth / 2 - center) ? index : closest, active); update(); }, 90); }, { passive: true });
+    update();
   }
-
-  function getDomIndex() {
-    const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
-    let closest = 0;
-    let minDist = Infinity;
-
-    cards.forEach((card, i) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(cardCenter - carouselCenter);
-      if (dist < minDist) {
-        minDist = dist;
-        closest = i;
-      }
-    });
-
-    return closest;
-  }
-
-  function getLogicalIndex(domIndex) {
-    if (domIndex === 0) return count - 1;
-    if (domIndex === count + 1) return 0;
-    return domIndex - REAL_START;
-  }
-
-  function jumpToDom(index) {
-    isJumping = true;
-    carousel.classList.add('is-jumping');
-    carousel.style.scrollBehavior = 'auto';
-    carousel.scrollLeft = getScrollLeftForIndex(index);
-    carousel.classList.remove('is-jumping');
-    carousel.style.scrollBehavior = 'smooth';
-    isJumping = false;
-    updateActiveCard();
-  }
-
-  function scrollToDom(index, smooth = true) {
-    if (!cards[index]) return;
-    carousel.style.scrollBehavior = smooth ? 'smooth' : 'auto';
-    carousel.scrollLeft = getScrollLeftForIndex(index);
-    scheduleLoopCheck();
-  }
-
-  originals.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'works__dot';
-    dot.setAttribute('role', 'tab');
-    dot.setAttribute('aria-label', `制作物 ${i + 1}`);
-    dot.addEventListener('click', () => scrollToDom(i + REAL_START));
-    dotsWrap.appendChild(dot);
-  });
-
-  function updateActiveCard() {
-    const domIndex = getDomIndex();
-    const logical = getLogicalIndex(domIndex);
-
-    cards.forEach((card, i) => {
-      card.classList.toggle('work-card--active', i === domIndex);
-    });
-
-    dotsWrap.querySelectorAll('.works__dot').forEach((dot, i) => {
-      const isActive = i === logical;
-      dot.classList.toggle('is-active', isActive);
-      dot.setAttribute('aria-selected', isActive);
-    });
-
-    if (counterCurrent) {
-      counterCurrent.textContent = String(logical + 1).padStart(2, '0');
-    }
-  }
-
-  function handleLoopJump() {
-    if (isJumping) return;
-
-    const domIndex = getDomIndex();
-
-    if (domIndex === 0) {
-      jumpToDom(REAL_END);
-    } else if (domIndex === count + 1) {
-      jumpToDom(REAL_START);
-    }
-  }
-
-  function scheduleLoopCheck() {
-    if ('onscrollend' in carousel) return;
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(handleLoopJump, 480);
-  }
-
-  function goNext() {
-    const domIndex = getDomIndex();
-    if (domIndex >= REAL_END) {
-      scrollToDom(domIndex + 1);
-      return;
-    }
-    scrollToDom(domIndex + 1);
-  }
-
-  function goPrev() {
-    const domIndex = getDomIndex();
-    if (domIndex <= REAL_START) {
-      scrollToDom(0);
-      return;
-    }
-    scrollToDom(domIndex - 1);
-  }
-
-  prevBtn.addEventListener('click', goPrev);
-  nextBtn.addEventListener('click', goNext);
-
-  carousel.addEventListener('scroll', () => {
-    if (!isJumping) updateActiveCard();
-  }, { passive: true });
-
-  carousel.addEventListener('scrollend', handleLoopJump, { passive: true });
-
-  window.addEventListener('resize', () => {
-    jumpToDom(getDomIndex());
-  }, { passive: true });
-
-  carousel.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      goPrev();
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      goNext();
-    }
-  });
-
-  requestAnimationFrame(() => {
-    jumpToDom(REAL_START);
-  });
-}
+  setupNavigation();
+  setupReveals();
+  setupCarousel();
+})();

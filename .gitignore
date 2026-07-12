@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Node (将来導入した場合)
+node_modules/
+
+# Build
+dist/
+build/
+
+# Documentation (AI用設計書)
+instructions/
